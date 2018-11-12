@@ -1,0 +1,139 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "boardgame-website": {
+      "root": "apps/boardgame-website/",
+      "sourceRoot": "apps/boardgame-website/src",
+      "projectType": "application",
+      "prefix": "boardgame-website",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/boardgame-website",
+            "index": "apps/boardgame-website/src/index.html",
+            "main": "apps/boardgame-website/src/main.ts",
+            "polyfills": "apps/boardgame-website/src/polyfills.ts",
+            "tsConfig": "apps/boardgame-website/tsconfig.app.json",
+            "assets": [
+              "apps/boardgame-website/src/favicon.ico",
+              "apps/boardgame-website/src/assets"
+            ],
+            "styles": [
+              "apps/boardgame-website/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/boardgame-website/src/environments/environment.ts",
+                  "with": "apps/boardgame-website/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "boardgame-website:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "boardgame-website:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "boardgame-website:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/boardgame-website/tsconfig.app.json",
+              "apps/boardgame-website/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/boardgame-website/jest.config.js",
+            "tsConfig": "apps/boardgame-website/tsconfig.spec.json",
+            "setupFile": "apps/boardgame-website/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "boardgame-website-e2e": {
+      "root": "apps/boardgame-website-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/boardgame-website-e2e/cypress.json",
+            "tsConfig": "apps/boardgame-website-e2e/tsconfig.e2e.json",
+            "devServerTarget": "boardgame-website:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "boardgame-website:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "yarn"
+  },
+  "defaultProject": "boardgame-website"
+}

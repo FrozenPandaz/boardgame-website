@@ -1,0 +1,18 @@
+{
+  "npmScope": "boardgame-website",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "boardgame-website": {
+      "tags": []
+    },
+    "boardgame-website-e2e": {
+      "tags": []
+    }
+  }
+}
