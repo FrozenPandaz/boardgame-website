@@ -112,13 +112,17 @@
           "configurations": {
             "production": {
               "devServerTarget": "boardgame-website:serve:production"
+            },
+            "ci": {
+              "devServerTarget": "boardgame-website:serve",
+              "headless": true
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": "apps/boardgame-website-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
