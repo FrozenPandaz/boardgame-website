@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: cypress/browsers:chrome69
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run: git rebase origin/master
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - ~/.cache
+      # run format
+      - run: yarn format:check
+      # run lint
+      - run: yarn lint
+      # run lint
+      - run: yarn affected:lint --base=origin/master
+      # run tests
+      - run: yarn affected:test --base=origin/master
+      # run e2e
+      - run: yarn affected:e2e --base=origin/master --configuration ci
+      # run build
+      - run: yarn affected:build --base=origin/master --prod
