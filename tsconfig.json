@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@boardgame-website/home": [
+        "libs/home/src/index.ts"
+      ]
     }
   },
   "exclude": [

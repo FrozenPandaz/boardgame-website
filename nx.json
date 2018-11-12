@@ -13,6 +13,9 @@
     },
     "boardgame-website-e2e": {
       "tags": []
+    },
+    "home": {
+      "tags": []
     }
   }
 }
