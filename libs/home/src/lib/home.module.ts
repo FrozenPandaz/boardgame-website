@@ -6,15 +6,13 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { MatButtonModule } from '@angular/material';
 
 @NgModule({
-  declarations: [
-    HomepageComponent,
-  ],
+  declarations: [HomepageComponent],
   imports: [
     CommonModule,
     MatButtonModule,
 
     RouterModule.forChild([
-      {path: '', pathMatch: 'full', component: HomepageComponent}
+      { path: '', pathMatch: 'full', component: HomepageComponent }
     ])
   ]
 })

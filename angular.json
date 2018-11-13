@@ -27,7 +27,10 @@
               "apps/boardgame-website/src/assets"
             ],
             "styles": ["apps/boardgame-website/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs"]
+            }
           },
           "configurations": {
             "production": {
@@ -152,6 +155,13 @@
           }
         }
       }
+    },
+    "theme": {
+      "root": "libs/theme",
+      "sourceRoot": "libs/theme/src",
+      "projectType": "library",
+      "prefix": "boardgame-website",
+      "architect": {}
     }
   },
   "cli": {
