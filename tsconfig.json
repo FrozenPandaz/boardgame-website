@@ -18,6 +18,9 @@
     "paths": {
       "@boardgame-website/home": [
         "libs/home/src/index.ts"
+      ],
+      "@boardgame-website/theme": [
+        "libs/theme/src/index.ts"
       ]
     }
   },
