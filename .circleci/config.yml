@@ -41,9 +41,30 @@ jobs:
       # run e2e
       - run: yarn affected:e2e --base=origin/master --configuration ci
       # run build
-      - run: yarn affected:build --base=origin/master --prod
+      - run: yarn affected:build --all --prod
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  deploy:
+    docker:
+      - image: cypress/browsers:chrome69
+
+    working_directory: ~/repo
+
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn deploy --token=$FIREBASE_TOKEN
+workflows:
+  version: 2
+
+  check-and-deploy:
+    jobs:
+      - build
       - deploy:
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              yarn deploy --token=$FIREBASE_TOKEN
-            fi
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
