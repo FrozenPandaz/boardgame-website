@@ -23,7 +23,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
+      - run: yarn install && yarn list --depth 0
 
       - save_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
@@ -42,3 +42,8 @@ jobs:
       - run: yarn affected:e2e --base=origin/master --configuration ci
       # run build
       - run: yarn affected:build --base=origin/master --prod
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              yarn deploy --token=$FIREBASE_TOKEN
+            fi

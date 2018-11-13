@@ -26,19 +26,20 @@
               "apps/boardgame-website/src/favicon.ico",
               "apps/boardgame-website/src/assets"
             ],
-            "styles": [
-              "apps/boardgame-website/src/styles.scss"
-            ],
+            "styles": ["apps/boardgame-website/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/boardgame-website/src/environments/environment.ts",
-                  "with": "apps/boardgame-website/src/environments/environment.prod.ts"
+                  "replace":
+                    "apps/boardgame-website/src/environments/environment.ts",
+                  "with":
+                    "apps/boardgame-website/src/environments/environment.prod.ts"
                 }
               ],
+              "deployUrl": "/boardgame-website/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -82,9 +83,7 @@
               "apps/boardgame-website/tsconfig.app.json",
               "apps/boardgame-website/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -123,9 +122,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/boardgame-website-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -143,9 +140,7 @@
               "libs/home/tsconfig.lib.json",
               "libs/home/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
