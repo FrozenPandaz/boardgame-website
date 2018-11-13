@@ -10,12 +10,16 @@
   },
   "projects": {
     "boardgame-website": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["theme"]
     },
     "boardgame-website-e2e": {
       "tags": []
     },
     "home": {
+      "tags": []
+    },
+    "theme": {
       "tags": []
     }
   }
