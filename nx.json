@@ -11,7 +11,7 @@
   "projects": {
     "boardgame-website": {
       "tags": [],
-      "implicitDependencies": ["theme"]
+      "implicitDependencies": ["theme", "api"]
     },
     "boardgame-website-e2e": {
       "tags": []
@@ -20,6 +20,18 @@
       "tags": []
     },
     "theme": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "boardgame-data-access": {
+      "tags": []
+    },
+    "boardgame-contract": {
+      "tags": []
+    },
+    "fetch-xml": {
       "tags": []
     }
   }

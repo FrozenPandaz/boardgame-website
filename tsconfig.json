@@ -7,25 +7,21 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "types": ["jest"],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@boardgame-website/home": [
-        "libs/home/src/index.ts"
+      "@boardgame-website/home": ["libs/home/src/index.ts"],
+      "@boardgame-website/theme": ["libs/theme/src/index.ts"],
+      "@boardgame-website/boardgame/data-access": [
+        "libs/boardgame/data-access/src/index.ts"
       ],
-      "@boardgame-website/theme": [
-        "libs/theme/src/index.ts"
-      ]
+      "@boardgame-website/boardgame/contract": [
+        "libs/boardgame/contract/src/index.ts"
+      ],
+      "@boardgame-website/fetch-xml": ["libs/fetch-xml/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

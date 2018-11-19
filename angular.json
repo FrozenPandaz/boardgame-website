@@ -26,20 +26,22 @@
               "apps/boardgame-website/src/favicon.ico",
               "apps/boardgame-website/src/assets"
             ],
-            "styles": ["apps/boardgame-website/src/styles.scss"],
+            "styles": [
+              "apps/boardgame-website/src/styles.scss"
+            ],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": ["libs"]
+              "includePaths": [
+                "libs"
+              ]
             }
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace":
-                    "apps/boardgame-website/src/environments/environment.ts",
-                  "with":
-                    "apps/boardgame-website/src/environments/environment.prod.ts"
+                  "replace": "apps/boardgame-website/src/environments/environment.ts",
+                  "with": "apps/boardgame-website/src/environments/environment.prod.ts"
                 }
               ],
               "deployUrl": "/boardgame-website/",
@@ -65,7 +67,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "boardgame-website:build"
+            "browserTarget": "boardgame-website:build",
+            "proxyConfig": "apps/boardgame-website/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -86,7 +89,9 @@
               "apps/boardgame-website/tsconfig.app.json",
               "apps/boardgame-website/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -125,7 +130,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/boardgame-website-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -143,7 +150,9 @@
               "libs/home/tsconfig.lib.json",
               "libs/home/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -162,6 +171,144 @@
       "projectType": "library",
       "prefix": "boardgame-website",
       "architect": {}
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/builders:node-build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": [
+              "apps/api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/builders:node-execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "boardgame-data-access": {
+      "root": "libs/boardgame/data-access",
+      "sourceRoot": "libs/boardgame/data-access/src",
+      "projectType": "library",
+      "prefix": "boardgame-website",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/boardgame/data-access/tsconfig.lib.json",
+              "libs/boardgame/data-access/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/boardgame/data-access/jest.config.js",
+            "tsConfig": "libs/boardgame/data-access/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "boardgame-contract": {
+      "root": "libs/boardgame/contract",
+      "sourceRoot": "libs/boardgame/contract/src",
+      "projectType": "library",
+      "prefix": "boardgame-website",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/boardgame/contract/tsconfig.lib.json",
+              "libs/boardgame/contract/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/boardgame/contract/jest.config.js",
+            "tsConfig": "libs/boardgame/contract/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "fetch-xml": {
+      "root": "libs/fetch-xml",
+      "sourceRoot": "libs/fetch-xml/src",
+      "projectType": "library",
+      "prefix": "boardgame-website",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/fetch-xml/tsconfig.lib.json",
+              "libs/fetch-xml/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/fetch-xml/jest.config.js",
+            "tsConfig": "libs/fetch-xml/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
